@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+{% block page_title %}
+Create Patient
+{% endblock page_title %}
+
+{% block h1_banner %}
+New Patient
+{% endblock h1_banner %}
+{% block p_banner %}{% endblock p_banner %}
+
+{% block section_title %}
+<h2 class="mt-0">
+    Complete the form!
+</h2>
+{% endblock section_title %}
+
+{% block div_section %}
+<form action={% url "create_patient" %} method="post">
+    {% csrf_token %}
+    {{form}}
+    <div class="d-grid"><input class="btn btn-primary btn-l" type="submit" value="Create"></div>
+</form>
+{% endblock div_section %}

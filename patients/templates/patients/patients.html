@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% block page_title %}
+Our Patients
+{% endblock page_title %}
+
+{% block h1_banner %}
+Patients
+{% endblock h1_banner %}
+{% block p_banner %}{% endblock p_banner %}
+
+{% block section_title %}
+<form action={% url "patients" %}>
+    {{form}}
+    <input type="submit" value="Search" class="btn btn-primary btn-l" style="margin-top:10px">
+</form>
+{% endblock section_title %}
+
+{% block div_section %}
+{% if patients %}
+    <ul>    
+        {% for p in patients %}
+        <li>{{p}} Observations: {{p.observations|truncatechars:20}}<a href={% url "patient_detail" p.id %}>See More</a> | <a href={% url "update_patient" p.id %}>Update</a> | <a href={% url "delete_patient" p.id %}>Delete</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+<p>No patients found.</p>
+{% endif %}
+{% endblock div_section %}

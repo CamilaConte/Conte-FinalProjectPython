@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+{% block page_title %}
+Patient
+{% endblock page_title %}
+
+{% block h1_banner %}
+Patient {{patient.last_name}}
+{% endblock h1_banner %}
+{% block p_banner %}{% endblock p_banner %}
+
+{% block section_title %}
+<h2 class="mt-0">
+    {{patient.last_name}}, {{patient.name}}
+</h2>
+{% endblock section_title %}
+
+{% block div_section %}
+<ul>
+    <li>Document: {{patient.document}}</li>
+    <li>Phone Number: {{patient.phone_number}}</li>
+    <li>Birth Date: {{patient.birth_date}}</li>
+    <li>Observations: {{patient.observations}}</li>
+</ul>
+<div class="d-grid">
+    <a class="btn btn-primary btn-l" href={% url "update_patient" patient.id%} style="margin-bottom:10px">Update</a>
+    <a class="btn btn-primary btn-l" href={% url "delete_patient" patient.id%} style="margin-bottom:10px" >Delete</a>
+    <a class="btn btn-secondary btn-l" href={% url "patients" %}>Go Back</a>
+</div>
+{% endblock div_section %}

@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+{% block page_title %}
+My Profile
+{% endblock page_title %}
+
+{% block h1_banner %}
+{{request.user.username.capitalize}}
+{% endblock h1_banner %}
+{% block p_banner %}{% endblock p_banner %}
+
+{% block section_title %}
+<h3 class="mt-0">
+    Do you want to modified some information?
+</h3>
+{% endblock section_title %}
+
+{% block div_section %}
+<div class="d-grid">
+    <a class="btn btn-primary btn-xl" href={% url "edit_profile" %}>Edit</a>
+    <a class="btn btn-primary btn-xl" href={% url "change_password" %} style="margin-top:10px">Change Password</a>
+</div>
+{% endblock div_section %}

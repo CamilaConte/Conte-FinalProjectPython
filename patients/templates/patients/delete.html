@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+{% block page_title %}
+Delete Patient
+{% endblock page_title %}
+
+{% block h1_banner %}
+Patient {{patient.last_name}}
+{% endblock h1_banner %}
+{% block p_banner %}
+<form action={% url "delete_patient" patient.id %} method="post">
+    {% csrf_token %}
+    <p class="text-white-75 mb-5">Confirm the elimination of the patient?
+        <br>
+        <input class="btn btn-primary btn-l" type="submit" value="Delete" style="margin-top:10px">
+        <a class="btn btn-secondary btn-l" href={% url "patient_detail" patient.id %} style="margin-top:10px">Go Back</a>
+    </p>
+</form>
+
+{% endblock p_banner %}
+
+{% block div_section %}
+{% endblock div_section %}

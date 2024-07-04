@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+{% block page_title %}
+Update Patient
+{% endblock page_title %}
+
+{% block h1_banner %}
+Patient {{patient.last_name}}
+{% endblock h1_banner %}
+{% block p_banner %}{% endblock p_banner %}
+
+{% block section_title %}
+<h2 class="mt-0">
+Complete the form
+</h2>
+{% endblock section_title %}
+
+{% block div_section %}
+<form action={% url "update_patient" patient.id %} method="post">
+    {% csrf_token %}
+    {{form}}
+    <div class="d-grid">
+        <input class="btn btn-primary btn-l" type="submit" value="Update">
+    </div>
+</form>
+<div class="d-grid"><a class="btn btn-secondary btn-l" href={% url "patient_detail" patient.id%} style="margin-top:10px">Go Back</a></div>
+{% endblock div_section %}
