@@ -6,10 +6,10 @@ class Patient(models.Model):
     document = models.IntegerField()
     phone_number = models.IntegerField()
     birth_date = models.DateField()
+    last_xray = models.ImageField(upload_to='xrays', blank=True, null=True)
     observations = models.TextField()
     # TODO: agregar campo de imagen como "ultima radiogradia" o similar para poner en el header
     
-    # TODO: chequear como hacer lo del ver mas
     def __str__(self):
         return f"{self.last_name}, {self.name}. Document: {self.document}."
     

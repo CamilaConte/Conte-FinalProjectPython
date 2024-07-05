@@ -3,7 +3,7 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.detail import DetailView
 from patients.models import Patient
-from patients.forms import SearchPatients
+from patients.forms import SearchPatientsForm, CreatePatientForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -19,15 +19,15 @@ class Patients(LoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["form"] = SearchPatients()
+        context["form"] = SearchPatientsForm()
         context["last_name"] = self.request.GET.get("last_name", "")
         return context
 
 class CreatePatient(LoginRequiredMixin, CreateView):
     model = Patient
+    form_class = CreatePatientForm
     template_name = "patients/create.html"
     success_url = reverse_lazy("patients")
-    fields = ["name", "last_name", "document", "phone_number", "birth_date", "observations"]
 
 class DeletePatient(LoginRequiredMixin, DeleteView):
     model = Patient
@@ -39,7 +39,7 @@ class UpdatePatient(LoginRequiredMixin, UpdateView):
     model = Patient
     template_name = "patients/update.html"
     success_url = reverse_lazy("patients")
-    fields = ["name", "last_name", "phone_number", "birth_date", "observations"]
+    fields = ["name", "last_name", "phone_number", "birth_date", "last_xray", "observations"]
     
 class PatientDetail(LoginRequiredMixin, DetailView):
     model = Patient

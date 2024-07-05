@@ -15,7 +15,7 @@ Edit
 {% endblock section_title %}
 
 {% block div_section %}
-<form action={% url "edit_profile" %} method="post">
+<form action={% url "edit_profile" %} method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{form}}
     <div class="d-grid">

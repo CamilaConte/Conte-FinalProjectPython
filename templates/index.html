@@ -35,7 +35,14 @@
                         {% if request.user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href={% url "patients" %}>Our Patients</a></li>
                         <li class="nav-item"><a class="nav-link" href={% url "create_patient" %}>Add Patient</a></li>
-                        <li class="nav-item"><a class="nav-link" href={% url "profile" %}>{{request.user.username.capitalize}}</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href={% url "profile" %}>
+                                {{request.user.username.capitalize}}&nbsp
+                                {% if request.user.extrauserdata.avatar %}
+                                <img src={{request.user.extrauserdata.avatar.url}} class="profile-picture-small rounded" height="20px" width="20px">
+                                {% endif %}
+                            </a>
+                        </li>
                         <li class="nav-item">
                                 <form action={% url "logout" %} method="post">
                                     {% csrf_token %}
@@ -51,6 +58,7 @@
             </div>
         </nav>
         <!-- Masthead-->
+        {% block header_masthead %}
         <header class="masthead">
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
@@ -71,6 +79,7 @@
                 </div>
             </div>
         </header>
+        {% endblock header_masthead %}
         <section class="page-section" id="contact">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">

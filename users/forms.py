@@ -7,8 +7,6 @@ class RegisterForm(UserCreationForm):
     last_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={"class":"form-control"}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={"class":"form-control"}))
     username = forms.CharField(max_length=50, widget=forms.TextInput(attrs={"class":"form-control"}))
-    #tuition = forms.IntegerField()
-    # y avatar en Datos Extra
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={"class":"form-control", "type":"password"}))
     password2 = forms.CharField(label="Repeat password", widget=forms.PasswordInput(attrs={"class":"form-control", "type":"password"}))
     
@@ -23,10 +21,12 @@ class EditProfileForm(UserChangeForm):
     email = forms.EmailField(widget=forms.EmailInput(attrs={"class":"form-control"}))
     first_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={"class":"form-control"}))
     last_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={"class":"form-control"}))
+    avatar = forms.ImageField(required=False)
+    birth_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"class":"form-control"}))
     
     class Meta:
         model = User
-        fields = ["email", "first_name", "last_name"]
+        fields = ["email", "first_name", "last_name", "avatar", "birth_date"]
 
 class PasswordChangeForm(PasswordChangeForm):
     old_password = forms.CharField(label="Old password", widget=forms.PasswordInput(attrs={"class":"form-control", "type":"password"}))

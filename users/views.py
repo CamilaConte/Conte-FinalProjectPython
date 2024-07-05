@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
+from users.models import ExtraUserData
 
 def login(request):
     form = AuthenticationForm()
@@ -18,6 +19,8 @@ def login(request):
             
             user = authenticate(username=username, password=password)
             django_login(request, user)
+            
+            ExtraUserData.objects.get_or_create(user=user)
             
             return redirect("home")
             
@@ -44,11 +47,15 @@ def password_success(request):
 
 @login_required
 def edit_profile(request):
-    form = EditProfileForm(instance=request.user)
+    form = EditProfileForm(initial={"avatar": request.user.extrauserdata.avatar, "birth_date":request.user.extrauserdata.birth_date}, instance=request.user)
     
     if request.method == "POST":
-        form = EditProfileForm(request.POST, instance=request.user)
+        form = EditProfileForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
+            extra_data = request.user.extrauserdata
+            extra_data.avatar = form.cleaned_data.get("avatar")
+            extra_data.birth_date = form.cleaned_data.get("birth_date")
+            extra_data.save()
             form.save()
             return redirect('profile')
         

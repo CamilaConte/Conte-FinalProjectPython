@@ -4,9 +4,19 @@ My Profile
 {% endblock page_title %}
 
 {% block h1_banner %}
-{{request.user.username.capitalize}}
+{% if request.user.extrauserdata.avatar %}
+    <img src={{request.user.extrauserdata.avatar.url}} class="rounded-circle mb-3" height="100px" width="100px">
+    <br>
+{% endif %}
+{{request.user.first_name.capitalize}} {{request.user.last_name.capitalize}} 
 {% endblock h1_banner %}
-{% block p_banner %}{% endblock p_banner %}
+{% block p_banner %}
+<p class="text-white">@{{request.user.username}}</p>
+<p class="text-white">Email: {{request.user.email}}</p>
+    {% if request.user.extrauserdata.birth_date %}
+        <p class="text-white">Birth Date: {{request.user.extrauserdata.birth_date}}</p>
+    {% endif %}
+{% endblock p_banner %}
 
 {% block section_title %}
 <h3 class="mt-0">
