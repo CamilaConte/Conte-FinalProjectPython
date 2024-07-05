@@ -18,6 +18,7 @@ Complete the form
 <form action={% url "update_patient" patient.id %} method="post">
     {% csrf_token %}
     {{form}}
+    <br>
     <div class="d-grid">
         <input class="btn btn-primary btn-l" type="submit" value="Update">
     </div>

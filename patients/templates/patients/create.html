@@ -18,6 +18,7 @@ New Patient
 <form action={% url "create_patient" %} method="post">
     {% csrf_token %}
     {{form}}
+    <br>
     <div class="d-grid"><input class="btn btn-primary btn-l" type="submit" value="Create"></div>
 </form>
 {% endblock div_section %}

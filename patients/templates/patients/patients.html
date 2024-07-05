@@ -9,7 +9,7 @@ Patients
 {% block p_banner %}{% endblock p_banner %}
 
 {% block section_title %}
-<form action={% url "patients" %}>
+<form action="{% url 'patients' %}#contact">
     {{form}}
     <input type="submit" value="Search" class="btn btn-primary btn-l" style="margin-top:10px">
 </form>

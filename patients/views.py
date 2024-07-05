@@ -3,7 +3,7 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.detail import DetailView
 from patients.models import Patient
-from patients.forms import SearchPatientsForm, CreatePatientForm
+from patients.forms import SearchPatientsForm, CreatePatientForm, UpdatePatientForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -34,13 +34,12 @@ class DeletePatient(LoginRequiredMixin, DeleteView):
     template_name = "patients/delete.html"
     success_url = reverse_lazy("patients")
 
-#TODO: pisar el formulatio de estas views con uno personalizado donde le pueda agregar el widget
 class UpdatePatient(LoginRequiredMixin, UpdateView):
     model = Patient
+    form_class = UpdatePatientForm
     template_name = "patients/update.html"
     success_url = reverse_lazy("patients")
-    fields = ["name", "last_name", "phone_number", "birth_date", "last_xray", "observations"]
-    
+        
 class PatientDetail(LoginRequiredMixin, DetailView):
     model = Patient
     template_name = "patients/detail.html"
