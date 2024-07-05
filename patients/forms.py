@@ -7,7 +7,7 @@ class SearchPatientsForm(forms.Form):
 class CreatePatientForm(forms.ModelForm):
     class Meta:
         model = Patient
-        fields = ("name", "last_name", "document", "phone_number", "birth_date", "observations")
+        fields = ("name", "last_name", "document", "phone_number", "last_xray", "birth_date", "observations")
         
         widgets = {
             "name": forms.TextInput(attrs={"class":"form-control"}),

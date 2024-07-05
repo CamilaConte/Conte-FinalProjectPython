@@ -37,7 +37,7 @@
                         <li class="nav-item"><a class="nav-link" href={% url "create_patient" %}>Add Patient</a></li>
                         <li class="nav-item">
                             <a class="nav-link" href={% url "profile" %}>
-                                {{request.user.username.capitalize}}&nbsp
+                                {{request.user.first_name}}&nbsp
                                 {% if request.user.extrauserdata.avatar %}
                                 <img src={{request.user.extrauserdata.avatar.url}} class="profile-picture-small rounded" height="20px" width="20px">
                                 {% endif %}

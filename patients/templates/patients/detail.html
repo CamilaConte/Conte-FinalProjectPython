@@ -1,12 +1,40 @@
 {% extends "index.html" %}
+{% load static %}
+
 {% block page_title %}
 Patient
 {% endblock page_title %}
 
-{% block h1_banner %}
-Patient {{patient.last_name}}
-{% endblock h1_banner %}
-{% block p_banner %}{% endblock p_banner %}
+{% block header_masthead %}
+{% if patient.last_xray %}
+    <header class="masthead" style="padding-top:10rem;padding-bottom:calc(10rem - 4.5rem);background:linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 5%, rgba(92, 77, 66, 0.8) 10%), url('{{patient.last_xray.url}}');background-position: center;background-repeat: no-repeat;background-attachment: scroll;background-size: cover;">
+        <div class="container px-4 px-lg-5 h-100">
+            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                <div class="col-lg-8 align-self-end">
+                    <h1 class="text-white font-weight-bold">
+                        Patient {{patient.last_name}}
+                    </h1>
+                </div>
+                <div class="col-lg-8 align-self-baseline"></div>
+            </div>
+        </div>
+    </header>
+{% else %}
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 h-100">
+            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                <div class="col-lg-8 align-self-end">
+                    <h1 class="text-white font-weight-bold">
+                        Patient {{patient.last_name}}
+                    </h1>
+                </div>
+                <div class="col-lg-8 align-self-baseline"></div>
+            </div>
+        </div>
+    </header>
+{% endif %}
+
+{% endblock header_masthead %}
 
 {% block section_title %}
 <h2 class="mt-0">
@@ -19,6 +47,12 @@ Patient {{patient.last_name}}
     <li>Document: {{patient.document}}</li>
     <li>Phone Number: {{patient.phone_number}}</li>
     <li>Birth Date: {{patient.birth_date}}</li>
+    {% if patient.last_xray %}
+    <li>Last X-Ray: 
+        <br>
+        <img src="{{patient.last_xray.url}}">
+    </li>
+    {% endif %}
     <li>Observations: {{patient.observations}}</li>
 </ul>
 <div class="d-grid">

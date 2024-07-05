@@ -14,8 +14,7 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ["first_name", "last_name", "username", "email", "password1", "password2"]
         help_texts = {key: "" for key in fields}
-
-#TODO: agregar avatar y datos extra        
+   
 class EditProfileForm(UserChangeForm):
     password = None
     email = forms.EmailField(widget=forms.EmailInput(attrs={"class":"form-control"}))

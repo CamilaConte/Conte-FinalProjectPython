@@ -15,7 +15,7 @@ Complete the form
 {% endblock section_title %}
 
 {% block div_section %}
-<form action={% url "update_patient" patient.id %} method="post">
+<form action={% url "update_patient" patient.id %} method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{form}}
     <br>

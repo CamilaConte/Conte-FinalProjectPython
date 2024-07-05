@@ -15,7 +15,7 @@ New Patient
 {% endblock section_title %}
 
 {% block div_section %}
-<form action={% url "create_patient" %} method="post">
+<form action={% url "create_patient" %} method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{form}}
     <br>
